@@ -5,11 +5,20 @@
 
     const TAMANIO_CELDA = 25;
     const serpiente = [
+    { x: 13, y: 10 },
+    { x: 12, y: 10 },
+    { x: 11, y: 10 },
+    { x: 10, y: 10 },
+    { x: 9, y: 10 },
+    { x: 9, y: 9 },
     { x: 9, y: 8 },
-    { x: 10, y: 8 },
-    { x: 11, y: 8 },
-    { x: 11, y: 9 }
+    { x: 9, y: 7 },
+    { x: 9, y: 6 },
+    { x: 9, y: 5 },
+    { x: 8, y: 5 },
+    { x: 7, y: 5 }
     ];
+
     
     // Primera pintura del juego al cargar la página
     dibujarTodo();
@@ -53,9 +62,9 @@
     function pintarSerpiente() {
       for (let i = 0; i < serpiente.length; i++) {
         if (i == 0) {
-            ctx.fillStyle = "yellow";
+            ctx.fillStyle = "pink";
         } else {
-            ctx.fillStyle = "red";
+            ctx.fillStyle = "green";
         }
 
         let x = serpiente[i].x * TAMANIO_CELDA;

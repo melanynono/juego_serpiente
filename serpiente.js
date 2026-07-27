@@ -50,5 +50,23 @@
     function dibujarTodo() {
       limpiarCanvas();
       dibujarTablero();
+
+      // Prueba 1
+      pintarParte(5, 5);
+
+      // Prueba 2
+      pintarParte(10, 2);
+
+      // Prueba 3
+      pintarParte(5, (canvas.height / TAMANIO_CELDA) - 1);
+
+      // Prueba 4
+      pintarParte((canvas.width / TAMANIO_CELDA) - 1, 5);
+
+      // Prueba 5
+      pintarParte(0, 8);
+
+      // Prueba 6
+      pintarParte((canvas.width / TAMANIO_CELDA) - 1, 0);
     }
 

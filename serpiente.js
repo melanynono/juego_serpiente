@@ -5,9 +5,10 @@
 
     const TAMANIO_CELDA = 25;
     const serpiente = [
-    { x: 2, y: 0 },
-    { x: 1, y: 0 },
-    { x: 0, y: 0 }
+    { x: 9, y: 8 },
+    { x: 10, y: 8 },
+    { x: 11, y: 8 },
+    { x: 11, y: 9 }
     ];
     
     // Primera pintura del juego al cargar la página

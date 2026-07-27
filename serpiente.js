@@ -36,8 +36,36 @@
       }
     }
 
+    function pintarParte(lineaX, lineaY) {
+      let x = lineaX * TAMANIO_CELDA;
+      let y = lineaY * TAMANIO_CELDA;
+
+      ctx.fillStyle = "#22c55e";
+      ctx.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
+      ctx.strokeStyle = "black";
+      ctx.strokeRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
+    }
+
     function dibujarTodo() {
       limpiarCanvas();
       dibujarTablero();
+
+      // Prueba 1
+      pintarParte(5, 5);
+
+      // Prueba 2
+      pintarParte(10, 2);
+
+      // Prueba 3
+      pintarParte(5, (canvas.height / TAMANIO_CELDA) - 1);
+
+      // Prueba 4
+      pintarParte((canvas.width / TAMANIO_CELDA) - 1, 5);
+
+      // Prueba 5
+      pintarParte(0, 8);
+
+      // Prueba 6
+      pintarParte((canvas.width / TAMANIO_CELDA) - 1, 0);
     }
 

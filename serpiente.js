@@ -4,10 +4,22 @@
     const ctx = canvas.getContext("2d");
 
     const TAMANIO_CELDA = 25;
-
+    const serpiente = [
+    { x: 13, y: 10 },
+    { x: 12, y: 10 },
+    { x: 11, y: 10 },
+    { x: 10, y: 10 },
+    { x: 9, y: 10 },
+    { x: 9, y: 9 },
+    { x: 9, y: 8 },
+    { x: 9, y: 7 },
+    { x: 9, y: 6 },
+    { x: 9, y: 5 },
+    { x: 8, y: 5 },
+    { x: 7, y: 5 }
+    ];
 
     
-
     // Primera pintura del juego al cargar la página
     dibujarTodo();
 
@@ -46,26 +58,26 @@
       ctx.strokeRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
     }
 
+    function pintarSerpiente() {
+      for (let i = 0; i < serpiente.length; i++) {
+        if (i == 0) {
+            ctx.fillStyle = "pink";
+        } else {
+            ctx.fillStyle = "green";
+        }
+
+        let x = serpiente[i].x * TAMANIO_CELDA;
+        let y = serpiente[i].y * TAMANIO_CELDA;
+
+        ctx.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
+
+        ctx.strokeStyle = "black";
+        ctx.strokeRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
+      }
+    }
+
     function dibujarTodo() {
       limpiarCanvas();
       dibujarTablero();
-
-      // Prueba 1
-      pintarParte(5, 5);
-
-      // Prueba 2
-      pintarParte(10, 2);
-
-      // Prueba 3
-      pintarParte(5, (canvas.height / TAMANIO_CELDA) - 1);
-
-      // Prueba 4
-      pintarParte((canvas.width / TAMANIO_CELDA) - 1, 5);
-
-      // Prueba 5
-      pintarParte(0, 8);
-
-      // Prueba 6
-      pintarParte((canvas.width / TAMANIO_CELDA) - 1, 0);
+      pintarSerpiente();
     }
-

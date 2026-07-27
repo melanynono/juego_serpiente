@@ -21,25 +21,13 @@
 
     function dibujarTablero(){
       ctx.strokeStyle = "white";
-      ctx.beginPath();
-      ctx.moveTo(50, 50);
-      ctx.lineTo(250, 50);
-      ctx.stroke();
-
-      ctx.beginPath();
-      ctx.moveTo(50, 150);
-      ctx.lineTo(450, 150);
-      ctx.stroke();
-
-      ctx.beginPath();
-      ctx.moveTo(100, 50);
-      ctx.lineTo(100, 300);
-      ctx.stroke();
-
-      ctx.beginPath();
-      ctx.moveTo(300, 50);
-      ctx.lineTo(300, 300);
-      ctx.stroke();
+      
+      for (let x = 0; x <= canvas.width; x += TAMANIO_CELDA) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, canvas.height);
+        ctx.stroke();
+      }
     }
 
 

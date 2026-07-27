@@ -28,7 +28,6 @@
         ctx.lineTo(x, canvas.height);
         ctx.stroke();
     }
-
       for (let y = 0; y <= canvas.height; y += TAMANIO_CELDA) {
         ctx.beginPath();
         ctx.moveTo(0, y);

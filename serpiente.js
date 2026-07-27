@@ -29,17 +29,6 @@
         ctx.stroke();
     }
 
-    function pintarParte(lineaX, lineaY) {
-    let x = lineaX * TAMANIO_CELDA;
-    let y = lineaY * TAMANIO_CELDA;
-
-    ctx.fillStyle = "#22c55e";
-    ctx.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
-
-    ctx.strokeStyle = "black";
-    ctx.strokeRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
-}
-
       for (let y = 0; y <= canvas.height; y += TAMANIO_CELDA) {
         ctx.beginPath();
         ctx.moveTo(0, y);

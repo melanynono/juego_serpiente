@@ -48,11 +48,11 @@
       }
     }
 
-    function pintarParte(lineaX, lineaY) {
+    function pintarParte(lineaX, lineaY, color) {
       let x = lineaX * TAMANIO_CELDA;
       let y = lineaY * TAMANIO_CELDA;
 
-      ctx.fillStyle = "#22c55e";
+      ctx.fillStyle = color;
       ctx.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
       ctx.strokeStyle = "black";
       ctx.strokeRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
@@ -61,18 +61,10 @@
     function pintarSerpiente() {
       for (let i = 0; i < serpiente.length; i++) {
         if (i == 0) {
-            ctx.fillStyle = "pink";
+            pintarParte(serpiente[i].x, serpiente[i].y, "yellow");
         } else {
-            ctx.fillStyle = "green";
+            pintarParte(serpiente[i].x, serpiente[i].y, "red");
         }
-
-        let x = serpiente[i].x * TAMANIO_CELDA;
-        let y = serpiente[i].y * TAMANIO_CELDA;
-
-        ctx.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
-
-        ctx.strokeStyle = "black";
-        ctx.strokeRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
       }
     }
 

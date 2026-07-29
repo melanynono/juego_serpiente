@@ -74,10 +74,52 @@
     serpiente.pop();
 }
 
+function moverIzquierda() {
+    let cabeza = serpiente[0];
+
+    let nuevaCabeza = {
+        x: cabeza.x - 1,
+        y: cabeza.y
+    };
+
+    serpiente.unshift(nuevaCabeza);
+    serpiente.pop();
+}
+
+function moverArriba() {
+    let cabeza = serpiente[0];
+
+    let nuevaCabeza = {
+        x: cabeza.x,
+        y: cabeza.y - 1
+    };
+
+    serpiente.unshift(nuevaCabeza);
+    serpiente.pop();
+}
+
+function moverAbajo() {
+    let cabeza = serpiente[0];
+
+    let nuevaCabeza = {
+        x: cabeza.x,
+        y: cabeza.y + 1
+    };
+
+    serpiente.unshift(nuevaCabeza);
+    serpiente.pop();
+}
+
 function cambiarDireccion(direccion) {
 
     if (direccion === "derecha") {
         moverDerecha();
+    } else if (direccion === "izquierda") {
+        moverIzquierda();
+    } else if (direccion === "arriba") {
+        moverArriba();
+    } else if (direccion === "abajo") {
+        moverAbajo();
     }
 
     dibujarTodo();

@@ -68,6 +68,20 @@
       }
     }
 
+    function moverDerecha() {
+    let cabeza = serpiente[0];
+    let nuevaCabeza = {
+        x: cabeza.x + 1,
+        y: cabeza.y
+    };
+
+    // Agregar la nueva cabeza
+    serpiente.unshift(nuevaCabeza);
+
+    // Eliminar la cola
+    serpiente.pop();
+}
+
     function dibujarTodo() {
       limpiarCanvas();
       dibujarTablero();

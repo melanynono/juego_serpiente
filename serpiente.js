@@ -11,7 +11,7 @@
     { x: 10, y: 10 }
     ];
 
-    let intervalo = null;
+    let intervaloSerpiente = null;
     let direccionActual = "derecha";
 
     
@@ -119,16 +119,17 @@ direccionActual = direccion;
 
 function iniciarJuego() {
 
-    if (intervalo != null) {
+    if (intervaloSerpiente != null) {
         return;
     }
 
-    intervalo = setInterval(moverSerpiente, 1000);
+    intervaloSerpiente = setInterval(moverSerpiente, 1000);
 
 }
 
 function pausarJuego() {
-    clearInterval(intervalo);
+    clearInterval(intervaloSerpiente);
+    intervaloSerpiente = null;
 }
 
 function moverSerpiente() {

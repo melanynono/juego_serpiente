@@ -13,6 +13,7 @@
 
     let intervaloSerpiente = null;
     let direccionActual = "derecha";
+    let comida = null;
 
     
     // Primera pintura del juego al cargar la página
@@ -147,8 +148,25 @@ function moverSerpiente() {
 
 }
 
+function pintarComida() {
+
+    let columnas = canvas.width / TAMANIO_CELDA;
+    let filas = canvas.height / TAMANIO_CELDA;
+
+    let posicionX = Math.floor(Math.random() * columnas);
+    let posicionY = Math.floor(Math.random() * filas);
+
+    comida = {
+        x: posicionX,
+        y: posicionY
+    };
+
+    pintarParte(comida.x, comida.y, "green");
+}
+
     function dibujarTodo() {
       limpiarCanvas();
       dibujarTablero();
+      pintarComida();
       pintarSerpiente();
     }

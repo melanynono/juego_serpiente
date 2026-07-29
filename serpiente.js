@@ -119,21 +119,11 @@ direccionActual = direccion;
 
 function iniciarJuego() {
 
-    intervalo = setInterval(function () {
+    if (intervalo != null) {
+        return;
+    }
 
-        if (direccionActual === "derecha") {
-            moverDerecha();
-        } else if (direccionActual === "izquierda") {
-            moverIzquierda();
-        } else if (direccionActual === "arriba") {
-            moverArriba();
-        } else if (direccionActual === "abajo") {
-            moverAbajo();
-        }
-
-        dibujarTodo();
-
-    }, 300);
+    intervalo = setInterval(moverSerpiente, 1000);
 
 }
 
@@ -141,6 +131,9 @@ function pausarJuego() {
     clearInterval(intervalo);
 }
 
+function moverSerpiente() {
+    console.log("moviendo");
+}
 
     function dibujarTodo() {
       limpiarCanvas();

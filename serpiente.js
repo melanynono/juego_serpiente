@@ -11,6 +11,9 @@
     { x: 10, y: 10 }
     ];
 
+    let intervalo = null;
+    let direccionActual = "derecha";
+
     
     // Primera pintura del juego al cargar la página
     dibujarTodo();
@@ -111,19 +114,33 @@ function moverAbajo() {
 }
 
 function cambiarDireccion(direccion) {
-
-    if (direccion === "derecha") {
-        moverDerecha();
-    } else if (direccion === "izquierda") {
-        moverIzquierda();
-    } else if (direccion === "arriba") {
-        moverArriba();
-    } else if (direccion === "abajo") {
-        moverAbajo();
-    }
-
-    dibujarTodo();
+direccionActual = direccion;
 }
+
+function iniciarJuego() {
+
+    intervalo = setInterval(function () {
+
+        if (direccionActual === "derecha") {
+            moverDerecha();
+        } else if (direccionActual === "izquierda") {
+            moverIzquierda();
+        } else if (direccionActual === "arriba") {
+            moverArriba();
+        } else if (direccionActual === "abajo") {
+            moverAbajo();
+        }
+
+        dibujarTodo();
+
+    }, 300);
+
+}
+
+function pausarJuego() {
+    clearInterval(intervalo);
+}
+
 
     function dibujarTodo() {
       limpiarCanvas();

@@ -14,6 +14,7 @@
     let intervaloSerpiente = null;
     let direccionActual = "derecha";
     let comida = null;
+    let puntaje = 0;
 
     
     // Primera pintura del juego al cargar la página
@@ -144,22 +145,58 @@ function moverSerpiente() {
         moverAbajo();
     }
 
-    dibujarTodo();
+if (atrapaComida()) {
 
+    puntaje++;
+
+    let cola = serpiente[serpiente.length - 1];
+
+    let nuevoSegmento = {};
+
+    if (direccionActual === "derecha") {
+        nuevoSegmento = {
+            x: cola.x - 1,
+            y: cola.y
+        };
+
+    } else if (direccionActual === "izquierda") {
+        nuevoSegmento = {
+            x: cola.x + 1,
+            y: cola.y
+        };
+
+    } else if (direccionActual === "arriba") {
+        nuevoSegmento = {
+            x: cola.x,
+            y: cola.y + 1
+        };
+
+    } else if (direccionActual === "abajo") {
+        nuevoSegmento = {
+            x: cola.x,
+            y: cola.y - 1
+        };
+    }
+
+    serpiente.push(nuevoSegmento);
+
+    document.getElementById("puntaje").textContent = puntaje;
+}
+
+    dibujarTodo();
 }
 
 function pintarComida() {
+    if (comida == null) {
 
-    let columnas = canvas.width / TAMANIO_CELDA;
-    let filas = canvas.height / TAMANIO_CELDA;
+        let columnas = canvas.width / TAMANIO_CELDA;
+        let filas = canvas.height / TAMANIO_CELDA;
 
-    let posicionX = Math.floor(Math.random() * columnas);
-    let posicionY = Math.floor(Math.random() * filas);
-
-    comida = {
-        x: posicionX,
-        y: posicionY
-    };
+        comida = {
+            x: Math.floor(Math.random() * columnas),
+            y: Math.floor(Math.random() * filas)
+        };
+    }
 
     pintarParte(comida.x, comida.y, "green");
 }

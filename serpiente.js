@@ -164,6 +164,17 @@ function pintarComida() {
     pintarParte(comida.x, comida.y, "green");
 }
 
+function atrapaComida() {
+
+    let cabeza = serpiente[0];
+
+    if (cabeza.x === comida.x && cabeza.y === comida.y) {
+        return true;
+    }
+
+    return false;
+}
+
     function dibujarTodo() {
       limpiarCanvas();
       dibujarTablero();

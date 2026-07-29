@@ -133,7 +133,18 @@ function pausarJuego() {
 }
 
 function moverSerpiente() {
-    console.log("moviendo");
+    if (direccionActual === "derecha") {
+        moverDerecha();
+    } else if (direccionActual === "izquierda") {
+        moverIzquierda();
+    } else if (direccionActual === "arriba") {
+        moverArriba();
+    } else if (direccionActual === "abajo") {
+        moverAbajo();
+    }
+
+    dibujarTodo();
+
 }
 
     function dibujarTodo() {

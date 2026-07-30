@@ -15,7 +15,7 @@
     let direccionActual = "derecha";
     let comida = null;
     let puntaje = 0;
-    let velocidad = 300;
+    let velocidad = 700;
 
     
     // Primera pintura del juego al cargar la página
@@ -116,10 +116,27 @@ function moverAbajo() {
     serpiente.pop();
 }
 
+//Evitar que la serpiente retroceda sobre si misma
 function cambiarDireccion(direccion) {
-direccionActual = direccion;
-}
 
+    if (direccionActual === "derecha" && direccion === "izquierda") {
+        return;
+    }
+
+    if (direccionActual === "izquierda" && direccion === "derecha") {
+        return;
+    }
+
+    if (direccionActual === "arriba" && direccion === "abajo") {
+        return;
+    }
+
+    if (direccionActual === "abajo" && direccion === "arriba") {
+        return;
+    }
+
+    direccionActual = direccion;
+}
 function iniciarJuego() {
 
     if (intervaloSerpiente != null) {
@@ -150,6 +167,13 @@ function moverSerpiente() {
         pausarJuego();
         alert("GAME OVER");
 
+        return;
+    }
+
+    //si la serpiente toca su cuerpo pierde
+    if (verificarColisionCuerpo()) {
+        pausarJuego();
+        alert("GAME OVER: La serpiente tocó su propio cuerpo.");
         return;
     }
 
@@ -191,7 +215,19 @@ if (atrapaComida()) {
     document.getElementById("puntaje").textContent = puntaje;
 
     comida = null;
-}
+
+    if (puntaje % 2 === 0) {
+
+        velocidad -= 50;
+
+        if (velocidad < 100) {
+            velocidad = 100;
+        }
+
+        clearInterval(intervaloSerpiente);
+        intervaloSerpiente = setInterval(moverSerpiente, velocidad);
+        }
+    }
 
     dibujarTodo();
 }
@@ -256,10 +292,28 @@ function reiniciarJuego() {
     direccionActual = "derecha";
     comida = null;
     puntaje = 0;
+    velocidad = 700;
 
     document.getElementById("puntaje").textContent = puntaje;
 
     dibujarTodo();
+}
+
+//La serpiente pierde si tocasu propio cuerpo
+function verificarColisionCuerpo() {
+
+    let cabeza = serpiente[0];
+
+    for (let i = 1; i < serpiente.length; i++) {
+
+        if (cabeza.x === serpiente[i].x &&
+            cabeza.y === serpiente[i].y) {
+
+            return true;
+        }
+    }
+
+    return false;
 }
 
     function dibujarTodo() {

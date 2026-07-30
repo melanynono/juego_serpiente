@@ -348,10 +348,6 @@ function mostrarGameOver() {
     ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Emoji
-    ctx.font = "60px Arial";
-    ctx.fillText("", 80, 180);
-
     // Texto GAME OVER
     ctx.font = "bold 55px Arial";
     ctx.fillStyle = "#ff3b3b";

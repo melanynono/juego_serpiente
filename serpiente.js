@@ -145,6 +145,13 @@ function moverSerpiente() {
         moverAbajo();
     }
 
+    if (verificarLimites()) {
+      pausarJuego();
+      alert("GAME OVER");
+
+      return;
+    }
+
 if (atrapaComida()) {
 
     puntaje++;
@@ -184,6 +191,25 @@ if (atrapaComida()) {
 }
 
     dibujarTodo();
+}
+
+function verificarLimites() {
+
+    let cabeza = serpiente[0];
+
+    let columnas = canvas.width / TAMANIO_CELDA;
+    let filas = canvas.height / TAMANIO_CELDA;
+
+    if (
+        cabeza.x < 0 || 
+        cabeza.x >= columnas ||
+        cabeza.y < 0 || 
+        cabeza.y >= filas
+    ) {
+        return true;
+    }
+
+    return false;
 }
 
 function pintarComida() {

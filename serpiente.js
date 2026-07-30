@@ -16,6 +16,13 @@
     let comida = null;
     let puntaje = 0;
     let velocidad = 700;
+    let sonidoComer = new Audio("sonidos/comida.mp3");
+    let musicaFondo = new Audio("sonidos/sonido.mp3");
+    let sonidoGameOver = new Audio("sonidos/game over.mp3");
+
+    musicaFondo.loop = true;
+    musicaFondo.volume = 0.3;
+    sonidoComer.volume = 0.8;
 
     
     // Primera pintura del juego al cargar la página
@@ -143,6 +150,8 @@ function iniciarJuego() {
         return;
     }
 
+    musicaFondo.play();
+
     intervaloSerpiente = setInterval(moverSerpiente, velocidad);
 
 }
@@ -150,6 +159,8 @@ function iniciarJuego() {
 function pausarJuego() {
     clearInterval(intervaloSerpiente);
     intervaloSerpiente = null;
+
+    musicaFondo.pause();
 }
 
 function moverSerpiente() {
@@ -165,7 +176,11 @@ function moverSerpiente() {
 
     if (verificarLimites()) {
         pausarJuego();
-        alert("GAME OVER");
+
+        sonidoGameOver.currentTime = 0;
+        sonidoGameOver.play();
+
+        mostrarGameOver();
 
         return;
     }
@@ -173,13 +188,21 @@ function moverSerpiente() {
     //si la serpiente toca su cuerpo pierde
     if (verificarColisionCuerpo()) {
         pausarJuego();
-        alert("GAME OVER: La serpiente tocó su propio cuerpo.");
-        return;
+
+        sonidoGameOver.currentTime = 0;
+        sonidoGameOver.play();
+
+mostrarGameOver();
+
+return;
     }
 
 if (atrapaComida()) {
 
     puntaje++;
+
+    sonidoComer.currentTime = 0;
+    sonidoComer.play();
 
     let cola = serpiente[serpiente.length - 1];
 
@@ -296,10 +319,13 @@ function reiniciarJuego() {
 
     document.getElementById("puntaje").textContent = puntaje;
 
+    musicaFondo.pause();
+    musicaFondo.currentTime = 0;  
+
     dibujarTodo();
 }
 
-//La serpiente pierde si tocasu propio cuerpo
+//La serpiente pierde si toca su propio cuerpo
 function verificarColisionCuerpo() {
 
     let cabeza = serpiente[0];
@@ -316,9 +342,29 @@ function verificarColisionCuerpo() {
     return false;
 }
 
+function mostrarGameOver() {
+
+    // Fondo semitransparente
+    ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Emoji
+    ctx.font = "60px Arial";
+    ctx.fillText("", 80, 180);
+
+    // Texto GAME OVER
+    ctx.font = "bold 55px Arial";
+    ctx.fillStyle = "#ff3b3b";
+    ctx.fillText("GAME OVER", 150, 180);
+
+    // Puntaje
+    ctx.font = "28px Arial";
+    ctx.fillStyle = "white";
+    ctx.fillText("Puntaje: " + puntaje, 220, 240);
+}
+
     function dibujarTodo() {
         limpiarCanvas();
-        dibujarTablero();
         pintarComida();
         pintarSerpiente();
     }

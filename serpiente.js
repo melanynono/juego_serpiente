@@ -15,6 +15,7 @@
     let direccionActual = "derecha";
     let comida = null;
     let puntaje = 0;
+    let velocidad = 300;
 
     
     // Primera pintura del juego al cargar la página
@@ -125,7 +126,7 @@ function iniciarJuego() {
         return;
     }
 
-    intervaloSerpiente = setInterval(moverSerpiente, 1000);
+    intervaloSerpiente = setInterval(moverSerpiente, velocidad);
 
 }
 
@@ -188,6 +189,8 @@ if (atrapaComida()) {
     serpiente.push(nuevoSegmento);
 
     document.getElementById("puntaje").textContent = puntaje;
+
+    comida = null;
 }
 
     dibujarTodo();

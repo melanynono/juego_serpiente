@@ -25,11 +25,11 @@
     // =========================
 
     function limpiarCanvas() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
 
     function dibujarTablero(){
-      ctx.strokeStyle = "white";
+        ctx.strokeStyle = "white";
 
     for (let x = 0; x <= canvas.width; x += TAMANIO_CELDA) {
         ctx.beginPath();
@@ -37,32 +37,32 @@
         ctx.lineTo(x, canvas.height);
         ctx.stroke();
     }
-      for (let y = 0; y <= canvas.height; y += TAMANIO_CELDA) {
+    for (let y = 0; y <= canvas.height; y += TAMANIO_CELDA) {
         ctx.beginPath();
         ctx.moveTo(0, y);
         ctx.lineTo(canvas.width, y);
         ctx.stroke();
-      }
+    }
     }
 
     function pintarParte(lineaX, lineaY, color) {
       let x = lineaX * TAMANIO_CELDA;
       let y = lineaY * TAMANIO_CELDA;
 
-      ctx.fillStyle = color;
-      ctx.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
-      ctx.strokeStyle = "black";
-      ctx.strokeRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
+        ctx.fillStyle = color;
+        ctx.fillRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
+        ctx.strokeStyle = "black";
+        ctx.strokeRect(x, y, TAMANIO_CELDA, TAMANIO_CELDA);
     }
 
     function pintarSerpiente() {
-      for (let i = 0; i < serpiente.length; i++) {
+    for (let i = 0; i < serpiente.length; i++) {
         if (i == 0) {
             pintarParte(serpiente[i].x, serpiente[i].y, "yellow");
         } else {
             pintarParte(serpiente[i].x, serpiente[i].y, "red");
         }
-      }
+    }
     }
 
     function moverDerecha() {
@@ -146,10 +146,10 @@ function moverSerpiente() {
     }
 
     if (verificarLimites()) {
-      pausarJuego();
-      alert("GAME OVER");
+        pausarJuego();
+        alert("GAME OVER");
 
-      return;
+        return;
     }
 
 if (atrapaComida()) {
@@ -238,9 +238,30 @@ function atrapaComida() {
     return false;
 }
 
+function reiniciarJuego() {
+    pausarJuego();
+
+    serpiente.splice(0, serpiente.length);
+
+    serpiente.push(
+        { x: 12, y: 11 },
+        { x: 12, y: 10 },
+        { x: 11, y: 10 },
+        { x: 10, y: 10 }
+    );
+
+    direccionActual = "derecha";
+    comida = null;
+    puntaje = 0;
+
+    document.getElementById("puntaje").textContent = puntaje;
+
+    dibujarTodo();
+}
+
     function dibujarTodo() {
-      limpiarCanvas();
-      dibujarTablero();
-      pintarComida();
-      pintarSerpiente();
+        limpiarCanvas();
+        dibujarTablero();
+        pintarComida();
+        pintarSerpiente();
     }

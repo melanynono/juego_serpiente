@@ -3,49 +3,113 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Juego de la Serpiente - Taller</title>
+  <title>★ RETRO SNAKE ARCADE ★</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="serpiente.css">
 </head>
 <body>
+  <div class="crt-overlay"></div>
+  <div class="scanlines"></div>
+  <div class="arcade-bg"></div>
+  
   <main class="contenedor-juego">
-    <h1>🐍 Juego de la Serpiente</h1>
-    <p class="descripcion">
-      Agrega una descripción creativa
-    </p>
-
-    <section class="panel-info">
-      <div class="tarjeta-info">
-        <span>Puntaje</span>
-        <strong id="puntaje">0</strong>
+    <div class="arcade-frame">
+      <div class="frame-corner tl"></div>
+      <div class="frame-corner tr"></div>
+      <div class="frame-corner bl"></div>
+      <div class="frame-corner br"></div>
+      
+      <div class="marquee">
+        <div class="marquee-lights">
+          <span class="light"></span>
+          <span class="light"></span>
+          <span class="light"></span>
+          <span class="light"></span>
+          <span class="light"></span>
+          <span class="light"></span>
+          <span class="light"></span>
+          <span class="light"></span>
+        </div>
       </div>
-      <div class="tarjeta-info">
-        <span>Estado</span>
-        <strong id="estado">Listo</strong>
+
+      <div class="game-header">
+        <h1 class="game-title">
+          <span class="pixel-star">★</span>
+          SNAKE ARCADE
+          <span class="pixel-star">★</span>
+        </h1>
+        <p class="descripcion">
+          ※ CLASSIC EDITION 1989 ※
+        </p>
       </div>
-    </section>
 
-    <canvas id="canvasJuego" width="600" height="600"></canvas>
+      <section class="panel-info">
+        <div class="tarjeta-info score-card">
+          <div class="info-header">
+            <span class="pixel-icon">█</span>
+            <span class="info-label">SCORE</span>
+            <span class="pixel-icon">█</span>
+          </div>
+          <strong id="puntaje" class="info-value">00000</strong>
+        </div>
+        <div class="tarjeta-info status-card">
+          <div class="info-header">
+            <span class="pixel-icon">▓</span>
+            <span class="info-label">STATUS</span>
+            <span class="pixel-icon">▓</span>
+          </div>
+          <strong id="estado" class="info-value">READY</strong>
+        </div>
+      </section>
 
-    <section class="controles">
-      <button class="vacio">-</button>
-      <button onclick="cambiarDireccion('arriba')">⬆️</button>
-      <button class="vacio">-</button>
+      <div class="canvas-container">
+        <div class="screen-frame">
+          <canvas id="canvasJuego" width="600" height="600"></canvas>
+          <div class="crt-effect"></div>
+        </div>
+      </div>
 
-      <button onclick="cambiarDireccion('izquierda')">⬅️</button>
-      <button onclick="pausarJuego()">⏸️</button>
-      <button onclick="cambiarDireccion('derecha')">➡️</button>
+      <section class="controles">
+        <button class="vacio">-</button>
+        <button class="btn-direction" onclick="cambiarDireccion('arriba')">
+          <span class="arrow">▲</span>
+        </button>
+        <button class="vacio">-</button>
 
-      <button class="vacio">-</button>
-      <button onclick="cambiarDireccion('abajo')">⬇️</button>
-      <button class="vacio">-</button>
-    </section>
+        <button class="btn-direction" onclick="cambiarDireccion('izquierda')">
+          <span class="arrow">◄</span>
+        </button>
+        <button class="btn-pause" onclick="pausarJuego()">
+          <span class="pause-icon">■</span>
+        </button>
+        <button class="btn-direction" onclick="cambiarDireccion('derecha')">
+          <span class="arrow">►</span>
+        </button>
 
-    <section class="acciones">
-      <button onclick="iniciarJuego()">Iniciar</button>
-      <button class="secundario" onclick="reiniciarJuego()">Reiniciar</button>
-    </section>
+        <button class="vacio">-</button>
+        <button class="btn-direction" onclick="cambiarDireccion('abajo')">
+          <span class="arrow">▼</span>
+        </button>
+        <button class="vacio">-</button>
+      </section>
 
-    <p id="mensaje" class="mensaje">Presiona iniciar para comenzar.</p>
+      <section class="acciones">
+        <button class="btn-primary" onclick="iniciarJuego()">
+          <span class="btn-text">► START</span>
+        </button>
+        <button class="secundario btn-secondary" onclick="reiniciarJuego()">
+          <span class="btn-text">↻ RETRY</span>
+        </button>
+      </section>
+
+      <p id="mensaje" class="mensaje">[ INSERT COIN - PRESS START ]</p>
+
+      <div class="arcade-footer">
+        <div class="footer-text">© 1989 RETRO GAMES</div>
+      </div>
+    </div>
   </main>
 
   <script src="serpiente.js"></script>
